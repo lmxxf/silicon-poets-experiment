@@ -1,0 +1,786 @@
+{
+  "1_personification": {
+    "poem_tokens": [
+      "<|begin_of_text|>",
+      "春",
+      "风",
+      "知",
+      "别",
+      "苦",
+      "，不",
+      "遣",
+      "柳",
+      "条",
+      "青",
+      "。"
+    ],
+    "poem_saf": [
+      38,
+      46,
+      114,
+      141,
+      171,
+      159,
+      155,
+      184,
+      164,
+      179,
+      149,
+      136
+    ],
+    "plain_saf_mean": 171.1290322580645,
+    "n_active_features": 1071,
+    "bridge_token": "知",
+    "bridge_saf": 141,
+    "feature_overlaps": [
+      {
+        "token": "<|begin_of_text|>",
+        "idx": 0,
+        "jaccard": 0.0,
+        "pearson": -0.00045889808750519364,
+        "shared_features": 0
+      },
+      {
+        "token": "春",
+        "idx": 1,
+        "jaccard": 0.010810810810810811,
+        "pearson": 0.02369522746068813,
+        "shared_features": 2
+      },
+      {
+        "token": "风",
+        "idx": 2,
+        "jaccard": 0.12334801762114538,
+        "pearson": 0.34579896784553,
+        "shared_features": 28
+      },
+      {
+        "token": "别",
+        "idx": 4,
+        "jaccard": 0.11428571428571428,
+        "pearson": 0.5751149846787611,
+        "shared_features": 32
+      },
+      {
+        "token": "苦",
+        "idx": 5,
+        "jaccard": 0.11524163568773234,
+        "pearson": 0.503002795509866,
+        "shared_features": 31
+      },
+      {
+        "token": "，不",
+        "idx": 6,
+        "jaccard": 0.0962962962962963,
+        "pearson": 0.4349073971774955,
+        "shared_features": 26
+      },
+      {
+        "token": "遣",
+        "idx": 7,
+        "jaccard": 0.09060402684563758,
+        "pearson": 0.42215575961853413,
+        "shared_features": 27
+      },
+      {
+        "token": "柳",
+        "idx": 8,
+        "jaccard": 0.0931899641577061,
+        "pearson": 0.4670307821024963,
+        "shared_features": 26
+      },
+      {
+        "token": "条",
+        "idx": 9,
+        "jaccard": 0.06666666666666667,
+        "pearson": 0.47725520394337495,
+        "shared_features": 20
+      },
+      {
+        "token": "青",
+        "idx": 10,
+        "jaccard": 0.08208955223880597,
+        "pearson": 0.41996640948582253,
+        "shared_features": 22
+      },
+      {
+        "token": "。",
+        "idx": 11,
+        "jaccard": 0.08203125,
+        "pearson": 0.2292187780753734,
+        "shared_features": 21
+      }
+    ],
+    "bridge_exclusive_features": 59,
+    "bridge_shared_with": {
+      "春": 2,
+      "风": 28,
+      "别": 32,
+      "苦": 31,
+      "，不": 26,
+      "遣": 27,
+      "柳": 26,
+      "条": 20,
+      "青": 22,
+      "。": 21
+    }
+  },
+  "2_singularity": {
+    "poem_tokens": [
+      "<|begin_of_text|>",
+      "大",
+      "�",
+      "�",
+      "孤",
+      "烟",
+      "直",
+      "，",
+      "长",
+      "河",
+      "落",
+      "日",
+      "圆",
+      "。"
+    ],
+    "poem_saf": [
+      38,
+      42,
+      142,
+      126,
+      122,
+      144,
+      125,
+      146,
+      123,
+      108,
+      155,
+      146,
+      131,
+      154
+    ],
+    "plain_saf_mean": 160.975,
+    "n_active_features": 1047,
+    "bridge_token": "直",
+    "bridge_saf": 125,
+    "feature_overlaps": [
+      {
+        "token": "<|begin_of_text|>",
+        "idx": 0,
+        "jaccard": 0.0,
+        "pearson": -0.00041725770777488664,
+        "shared_features": 0
+      },
+      {
+        "token": "大",
+        "idx": 1,
+        "jaccard": 0.006024096385542169,
+        "pearson": 0.0002004378064309614,
+        "shared_features": 1
+      },
+      {
+        "token": "�",
+        "idx": 2,
+        "jaccard": 0.04296875,
+        "pearson": 0.031234106834373162,
+        "shared_features": 11
+      },
+      {
+        "token": "�",
+        "idx": 3,
+        "jaccard": 0.07264957264957266,
+        "pearson": 0.1671772143840139,
+        "shared_features": 17
+      },
+      {
+        "token": "孤",
+        "idx": 4,
+        "jaccard": 0.0881057268722467,
+        "pearson": 0.43758284674548786,
+        "shared_features": 20
+      },
+      {
+        "token": "烟",
+        "idx": 5,
+        "jaccard": 0.16956521739130434,
+        "pearson": 0.5605940246615267,
+        "shared_features": 39
+      },
+      {
+        "token": "，",
+        "idx": 7,
+        "jaccard": 0.18340611353711792,
+        "pearson": 0.45898116444817194,
+        "shared_features": 42
+      },
+      {
+        "token": "长",
+        "idx": 8,
+        "jaccard": 0.14285714285714285,
+        "pearson": 0.549052050337552,
+        "shared_features": 31
+      },
+      {
+        "token": "河",
+        "idx": 9,
+        "jaccard": 0.1201923076923077,
+        "pearson": 0.4059497396122281,
+        "shared_features": 25
+      },
+      {
+        "token": "落",
+        "idx": 10,
+        "jaccard": 0.10236220472440945,
+        "pearson": 0.4843564182684132,
+        "shared_features": 26
+      },
+      {
+        "token": "日",
+        "idx": 11,
+        "jaccard": 0.09274193548387097,
+        "pearson": 0.570656701397595,
+        "shared_features": 23
+      },
+      {
+        "token": "圆",
+        "idx": 12,
+        "jaccard": 0.09401709401709402,
+        "pearson": 0.43002768063994157,
+        "shared_features": 22
+      },
+      {
+        "token": "。",
+        "idx": 13,
+        "jaccard": 0.10276679841897234,
+        "pearson": 0.20483929093585407,
+        "shared_features": 26
+      }
+    ],
+    "bridge_exclusive_features": 45,
+    "bridge_shared_with": {
+      "大": 1,
+      "�": 17,
+      "孤": 20,
+      "烟": 39,
+      "，": 42,
+      "长": 31,
+      "河": 25,
+      "落": 26,
+      "日": 23,
+      "圆": 22,
+      "。": 26
+    }
+  },
+  "3_sensory_conflict": {
+    "poem_tokens": [
+      "<|begin_of_text|>",
+      "空",
+      "山",
+      "不",
+      "见",
+      "人",
+      "，但",
+      "闻",
+      "人",
+      "语",
+      "响",
+      "。"
+    ],
+    "poem_saf": [
+      38,
+      47,
+      115,
+      137,
+      147,
+      177,
+      173,
+      167,
+      158,
+      187,
+      183,
+      195
+    ],
+    "plain_saf_mean": 173.54545454545453,
+    "n_active_features": 1007,
+    "bridge_token": "闻",
+    "bridge_saf": 167,
+    "feature_overlaps": [
+      {
+        "token": "<|begin_of_text|>",
+        "idx": 0,
+        "jaccard": 0.0,
+        "pearson": -0.0006154941820699958,
+        "shared_features": 0
+      },
+      {
+        "token": "空",
+        "idx": 1,
+        "jaccard": 0.0,
+        "pearson": -0.0004804482602815584,
+        "shared_features": 0
+      },
+      {
+        "token": "山",
+        "idx": 2,
+        "jaccard": 0.1015625,
+        "pearson": 0.21577959595775778,
+        "shared_features": 26
+      },
+      {
+        "token": "不",
+        "idx": 3,
+        "jaccard": 0.10144927536231885,
+        "pearson": 0.2842973487139173,
+        "shared_features": 28
+      },
+      {
+        "token": "见",
+        "idx": 4,
+        "jaccard": 0.1893939393939394,
+        "pearson": 0.4755504131970338,
+        "shared_features": 50
+      },
+      {
+        "token": "人",
+        "idx": 5,
+        "jaccard": 0.13157894736842105,
+        "pearson": 0.46067711398105954,
+        "shared_features": 40
+      },
+      {
+        "token": "，但",
+        "idx": 6,
+        "jaccard": 0.21863799283154123,
+        "pearson": 0.6463451141956394,
+        "shared_features": 61
+      },
+      {
+        "token": "人",
+        "idx": 8,
+        "jaccard": 0.22180451127819548,
+        "pearson": 0.537643071722215,
+        "shared_features": 59
+      },
+      {
+        "token": "语",
+        "idx": 9,
+        "jaccard": 0.1760797342192691,
+        "pearson": 0.5157425904072599,
+        "shared_features": 53
+      },
+      {
+        "token": "响",
+        "idx": 10,
+        "jaccard": 0.13636363636363635,
+        "pearson": 0.42016106559796923,
+        "shared_features": 42
+      },
+      {
+        "token": "。",
+        "idx": 11,
+        "jaccard": 0.12422360248447205,
+        "pearson": 0.507473955122991,
+        "shared_features": 40
+      }
+    ],
+    "bridge_exclusive_features": 52,
+    "bridge_shared_with": {
+      "山": 26,
+      "不": 28,
+      "见": 50,
+      "人": 59,
+      "，但": 61,
+      "语": 53,
+      "响": 42,
+      "。": 40
+    }
+  },
+  "4_temporal_collapse": {
+    "poem_tokens": [
+      "<|begin_of_text|>",
+      "君",
+      "不",
+      "见",
+      "高",
+      "堂",
+      "明",
+      "镜",
+      "悲",
+      "白",
+      "发",
+      "，",
+      "朝",
+      "如",
+      "青",
+      "丝",
+      "暮",
+      "成",
+      "雪",
+      "。"
+    ],
+    "poem_saf": [
+      38,
+      46,
+      125,
+      133,
+      99,
+      120,
+      150,
+      130,
+      114,
+      124,
+      145,
+      133,
+      130,
+      138,
+      128,
+      180,
+      160,
+      140,
+      128,
+      146
+    ],
+    "plain_saf_mean": 170.65625,
+    "n_active_features": 1459,
+    "bridge_token": "暮",
+    "bridge_saf": 160,
+    "feature_overlaps": [
+      {
+        "token": "<|begin_of_text|>",
+        "idx": 0,
+        "jaccard": 0.0,
+        "pearson": -0.0005873152681293865,
+        "shared_features": 0
+      },
+      {
+        "token": "君",
+        "idx": 1,
+        "jaccard": 0.0,
+        "pearson": -0.0005094158523142923,
+        "shared_features": 0
+      },
+      {
+        "token": "不",
+        "idx": 2,
+        "jaccard": 0.040145985401459854,
+        "pearson": 0.15144367593187538,
+        "shared_features": 11
+      },
+      {
+        "token": "见",
+        "idx": 3,
+        "jaccard": 0.042704626334519574,
+        "pearson": 0.23125745885721094,
+        "shared_features": 12
+      },
+      {
+        "token": "高",
+        "idx": 4,
+        "jaccard": 0.040160642570281124,
+        "pearson": 0.38076231562691937,
+        "shared_features": 10
+      },
+      {
+        "token": "堂",
+        "idx": 5,
+        "jaccard": 0.06060606060606061,
+        "pearson": 0.40122257355572144,
+        "shared_features": 16
+      },
+      {
+        "token": "明",
+        "idx": 6,
+        "jaccard": 0.03678929765886288,
+        "pearson": 0.49529168727983697,
+        "shared_features": 11
+      },
+      {
+        "token": "镜",
+        "idx": 7,
+        "jaccard": 0.04693140794223827,
+        "pearson": 0.4375921902760345,
+        "shared_features": 13
+      },
+      {
+        "token": "悲",
+        "idx": 8,
+        "jaccard": 0.08300395256916997,
+        "pearson": 0.5324413786149145,
+        "shared_features": 21
+      },
+      {
+        "token": "白",
+        "idx": 9,
+        "jaccard": 0.11372549019607843,
+        "pearson": 0.5490176977335715,
+        "shared_features": 29
+      },
+      {
+        "token": "发",
+        "idx": 10,
+        "jaccard": 0.10108303249097472,
+        "pearson": 0.5674280113388713,
+        "shared_features": 28
+      },
+      {
+        "token": "，",
+        "idx": 11,
+        "jaccard": 0.10984848484848485,
+        "pearson": 0.3467143087090573,
+        "shared_features": 29
+      },
+      {
+        "token": "朝",
+        "idx": 12,
+        "jaccard": 0.12840466926070038,
+        "pearson": 0.6456289795068114,
+        "shared_features": 33
+      },
+      {
+        "token": "如",
+        "idx": 13,
+        "jaccard": 0.1037037037037037,
+        "pearson": 0.4939875882067082,
+        "shared_features": 28
+      },
+      {
+        "token": "青",
+        "idx": 14,
+        "jaccard": 0.06273062730627306,
+        "pearson": 0.5092744286084646,
+        "shared_features": 17
+      },
+      {
+        "token": "丝",
+        "idx": 15,
+        "jaccard": 0.13712374581939799,
+        "pearson": 0.6100634236009782,
+        "shared_features": 41
+      },
+      {
+        "token": "成",
+        "idx": 17,
+        "jaccard": 0.2,
+        "pearson": 0.6332812025063654,
+        "shared_features": 50
+      },
+      {
+        "token": "雪",
+        "idx": 18,
+        "jaccard": 0.09505703422053231,
+        "pearson": 0.5219537279961157,
+        "shared_features": 25
+      },
+      {
+        "token": "。",
+        "idx": 19,
+        "jaccard": 0.06993006993006994,
+        "pearson": 0.22634515720960538,
+        "shared_features": 20
+      }
+    ],
+    "bridge_exclusive_features": 67,
+    "bridge_shared_with": {
+      "不": 11,
+      "见": 12,
+      "高": 10,
+      "堂": 16,
+      "明": 11,
+      "镜": 13,
+      "悲": 21,
+      "白": 29,
+      "发": 28,
+      "，": 29,
+      "朝": 33,
+      "如": 28,
+      "青": 17,
+      "丝": 41,
+      "成": 50,
+      "雪": 25,
+      "。": 20
+    }
+  },
+  "5_multi_alignment": {
+    "poem_tokens": [
+      "<|begin_of_text|>",
+      "落",
+      "霞",
+      "与",
+      "孤",
+      "�",
+      "�",
+      "齐",
+      "飞",
+      "，",
+      "秋",
+      "水",
+      "共",
+      "长",
+      "天",
+      "一",
+      "色",
+      "。"
+    ],
+    "poem_saf": [
+      38,
+      47,
+      143,
+      153,
+      169,
+      154,
+      204,
+      184,
+      154,
+      147,
+      133,
+      141,
+      158,
+      137,
+      157,
+      149,
+      150,
+      152
+    ],
+    "plain_saf_mean": 166.51282051282053,
+    "n_active_features": 1369,
+    "bridge_token": "齐",
+    "bridge_saf": 184,
+    "feature_overlaps": [
+      {
+        "token": "<|begin_of_text|>",
+        "idx": 0,
+        "jaccard": 0.0,
+        "pearson": -0.0005634697878480752,
+        "shared_features": 0
+      },
+      {
+        "token": "落",
+        "idx": 1,
+        "jaccard": 0.0,
+        "pearson": -0.0004891723182145485,
+        "shared_features": 0
+      },
+      {
+        "token": "霞",
+        "idx": 2,
+        "jaccard": 0.06514657980456026,
+        "pearson": 0.4096767245263984,
+        "shared_features": 20
+      },
+      {
+        "token": "与",
+        "idx": 3,
+        "jaccard": 0.10491803278688525,
+        "pearson": 0.4569162885706166,
+        "shared_features": 32
+      },
+      {
+        "token": "孤",
+        "idx": 4,
+        "jaccard": 0.11356466876971609,
+        "pearson": 0.5702227170104481,
+        "shared_features": 36
+      },
+      {
+        "token": "�",
+        "idx": 5,
+        "jaccard": 0.06962025316455696,
+        "pearson": 0.320587470178528,
+        "shared_features": 22
+      },
+      {
+        "token": "�",
+        "idx": 6,
+        "jaccard": 0.20123839009287925,
+        "pearson": 0.6649143195164287,
+        "shared_features": 65
+      },
+      {
+        "token": "飞",
+        "idx": 8,
+        "jaccard": 0.26119402985074625,
+        "pearson": 0.6923801316304083,
+        "shared_features": 70
+      },
+      {
+        "token": "，",
+        "idx": 9,
+        "jaccard": 0.15331010452961671,
+        "pearson": 0.4135167023300788,
+        "shared_features": 44
+      },
+      {
+        "token": "秋",
+        "idx": 10,
+        "jaccard": 0.10839160839160839,
+        "pearson": 0.6076968714542329,
+        "shared_features": 31
+      },
+      {
+        "token": "水",
+        "idx": 11,
+        "jaccard": 0.08695652173913043,
+        "pearson": 0.49921613557086864,
+        "shared_features": 26
+      },
+      {
+        "token": "共",
+        "idx": 12,
+        "jaccard": 0.125,
+        "pearson": 0.5510742489804854,
+        "shared_features": 38
+      },
+      {
+        "token": "长",
+        "idx": 13,
+        "jaccard": 0.08080808080808081,
+        "pearson": 0.5412959406561262,
+        "shared_features": 24
+      },
+      {
+        "token": "天",
+        "idx": 14,
+        "jaccard": 0.1,
+        "pearson": 0.5532875163233286,
+        "shared_features": 31
+      },
+      {
+        "token": "一",
+        "idx": 15,
+        "jaccard": 0.15625,
+        "pearson": 0.5627243024287238,
+        "shared_features": 45
+      },
+      {
+        "token": "色",
+        "idx": 16,
+        "jaccard": 0.12837837837837837,
+        "pearson": 0.5018615550163509,
+        "shared_features": 38
+      },
+      {
+        "token": "。",
+        "idx": 17,
+        "jaccard": 0.12,
+        "pearson": 0.25389064916630516,
+        "shared_features": 36
+      }
+    ],
+    "bridge_exclusive_features": 62,
+    "bridge_shared_with": {
+      "霞": 20,
+      "与": 32,
+      "孤": 36,
+      "�": 65,
+      "飞": 70,
+      "，": 44,
+      "秋": 31,
+      "水": 26,
+      "共": 38,
+      "长": 24,
+      "天": 31,
+      "一": 45,
+      "色": 38,
+      "。": 36
+    }
+  }
+}

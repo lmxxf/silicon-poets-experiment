@@ -1,7 +1,8 @@
 """
-实验一+三：诗歌虫洞实证
+实验一+三+EID：诗歌虫洞实证
 - 实验一：逐 token 残差流轨迹追踪 + 跳跃距离
 - 实验三：余弦相似度矩阵 + 跨层追踪
+- EID：有效内在维度（SVD 谱熵），量化语义体积
 
 模型：Llama-3.3-70B-Instruct-INT8，output_hidden_states=True
 5 组诗/白话对照
@@ -325,6 +326,108 @@ def run_exp3(pair, poem_sampled, poem_tokens, plain_sampled, plain_tokens):
 
 
 # ============================================================
+# EID：有效内在维度（SVD 谱熵）
+# ============================================================
+
+def compute_eid(hidden_matrix):
+    """
+    对 token×d_model 矩阵做 SVD，用归一化谱熵量化有效维度。
+    EID = exp(H)，H = -Σ p_i log(p_i)，p_i = σ_i² / Σσ_j²
+    EID 越高 = token 占据的语义维度越多 = 语义体积越大
+    """
+    U, S, Vt = np.linalg.svd(hidden_matrix, full_matrices=False)
+    # 奇异值平方 = 方差贡献
+    s2 = S ** 2
+    s2 = s2[s2 > 1e-12]  # 去掉数值噪声
+    p = s2 / s2.sum()
+    entropy = -np.sum(p * np.log(p))
+    eid = np.exp(entropy)
+    return float(eid), float(entropy), p.tolist()
+
+
+def run_eid(pair, poem_sampled, poem_tokens, plain_sampled, plain_tokens):
+    pair_id = pair["id"]
+    print(f"\n--- EID: {pair['type']} ({pair['source']}) ---")
+
+    stats = {}
+
+    for label, sampled, toks in [
+        ("poem", poem_sampled, poem_tokens),
+        ("plain", plain_sampled, plain_tokens),
+    ]:
+        last_layer = sampled[max(sampled.keys())]
+        eid, entropy, spectrum = compute_eid(last_layer)
+        n_tokens = len(toks)
+
+        stats[f"{label}_eid"] = eid
+        stats[f"{label}_entropy"] = entropy
+        stats[f"{label}_n_tokens"] = n_tokens
+        # 归一化 EID：除以 token 数，消除长度影响
+        stats[f"{label}_eid_normalized"] = eid / n_tokens if n_tokens > 0 else 0.0
+        stats[f"{label}_spectrum_top10"] = spectrum[:10]
+
+        print(f"  {label}: EID={eid:.2f}, 归一化EID={eid/n_tokens:.3f}, "
+              f"谱熵={entropy:.3f}, tokens={n_tokens}")
+
+    # 画对比图：奇异值谱 + EID 柱状图
+    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+    # 左图：奇异值谱对比
+    poem_last = poem_sampled[max(poem_sampled.keys())]
+    plain_last = plain_sampled[max(plain_sampled.keys())]
+    _, S_poem, _ = np.linalg.svd(poem_last, full_matrices=False)
+    _, S_plain, _ = np.linalg.svd(plain_last, full_matrices=False)
+
+    # 归一化奇异值（除以最大值）
+    S_poem_norm = S_poem / S_poem[0] if S_poem[0] > 0 else S_poem
+    S_plain_norm = S_plain / S_plain[0] if S_plain[0] > 0 else S_plain
+
+    n_show = min(20, len(S_poem_norm), len(S_plain_norm))
+    x = np.arange(n_show)
+    axes[0].bar(x - 0.2, S_poem_norm[:n_show], 0.4, color="crimson", alpha=0.8, label="诗")
+    axes[0].bar(x + 0.2, S_plain_norm[:n_show], 0.4, color="steelblue", alpha=0.8, label="白话")
+    axes[0].set_xlabel("奇异值序号", fontsize=12)
+    axes[0].set_ylabel("归一化奇异值", fontsize=12)
+    axes[0].set_title("奇异值谱对比", fontsize=13, fontweight="bold")
+    axes[0].legend()
+    axes[0].set_yscale("log")
+
+    # 右图：EID 对比柱状图
+    poem_eid = stats["poem_eid"]
+    plain_eid = stats["plain_eid"]
+    poem_eid_n = stats["poem_eid_normalized"]
+    plain_eid_n = stats["plain_eid_normalized"]
+
+    bar_x = [0, 1]
+    bars = axes[1].bar(bar_x, [poem_eid_n, plain_eid_n],
+                       color=["crimson", "steelblue"], alpha=0.8, width=0.5)
+    axes[1].set_xticks(bar_x)
+    axes[1].set_xticklabels(["诗", "白话"], fontsize=13)
+    axes[1].set_ylabel("归一化 EID (EID/token数)", fontsize=12)
+    axes[1].set_title("有效内在维度对比", fontsize=13, fontweight="bold")
+    # 标数值
+    for bar, eid_val, eid_n_val, n_tok in zip(
+        bars,
+        [poem_eid, plain_eid],
+        [poem_eid_n, plain_eid_n],
+        [stats["poem_n_tokens"], stats["plain_n_tokens"]],
+    ):
+        axes[1].text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                     f"EID={eid_val:.1f}\n({n_tok} tokens)\n归一化={eid_n_val:.3f}",
+                     ha="center", va="bottom", fontsize=10)
+
+    plt.suptitle(f"EID·{pair['type']} ({pair['source']})", fontsize=15, fontweight="bold")
+    plt.tight_layout()
+
+    path = os.path.join(OUTPUT_DIR, f"eid_{pair_id}_comparison.png")
+    fig.savefig(path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  保存: {path}")
+
+    return stats
+
+
+# ============================================================
 # 主循环
 # ============================================================
 
@@ -354,6 +457,7 @@ for pair in PAIRS:
 
     result["exp1"] = run_exp1(pair, poem_sampled, poem_tokens, plain_sampled, plain_tokens)
     result["exp3"] = run_exp3(pair, poem_sampled, poem_tokens, plain_sampled, plain_tokens)
+    result["eid"] = run_eid(pair, poem_sampled, poem_tokens, plain_sampled, plain_tokens)
 
     all_results[pair_id] = result
 
@@ -387,6 +491,14 @@ for pair_id, result in all_results.items():
     plain_ratio = exp3.get("plain_off_diag_ratio", 0)
     print(f"  非对角线高相似度对: 诗={poem_off} ({poem_ratio:.3f}), 白话={plain_off} ({plain_ratio:.3f})")
 
+    eid = result.get("eid", {})
+    poem_eid = eid.get("poem_eid", 0)
+    plain_eid = eid.get("plain_eid", 0)
+    poem_eid_n = eid.get("poem_eid_normalized", 0)
+    plain_eid_n = eid.get("plain_eid_normalized", 0)
+    eid_ratio = poem_eid_n / plain_eid_n if plain_eid_n > 0 else float("inf")
+    print(f"  EID: 诗={poem_eid:.2f} (归一化{poem_eid_n:.3f}), 白话={plain_eid:.2f} (归一化{plain_eid_n:.3f}), 比值={eid_ratio:.2f}x")
+
     summary[pair_id] = {
         "type": pair["type"],
         "source": pair["source"],
@@ -398,6 +510,11 @@ for pair_id, result in all_results.items():
         "poem_off_diag_ratio": poem_ratio,
         "plain_off_diag_high": plain_off,
         "plain_off_diag_ratio": plain_ratio,
+        "poem_eid": poem_eid,
+        "plain_eid": plain_eid,
+        "poem_eid_normalized": poem_eid_n,
+        "plain_eid_normalized": plain_eid_n,
+        "eid_ratio": eid_ratio,
     }
 
 results_path = os.path.join(OUTPUT_DIR, "exp13_results.json")
@@ -410,4 +527,4 @@ with open(summary_path, "w", encoding="utf-8") as f:
     json.dump(summary, f, ensure_ascii=False, indent=2)
 print(f"汇总已保存: {summary_path}")
 
-print("\n实验一+三完成！")
+print("\n实验一+三+EID 完成！")
