@@ -68,6 +68,7 @@
 | `exp123_qwen72b.py` | 实验一（残差流轨迹+跳跃距离）+ 实验三（余弦相似度+跨层追踪） | Llama-3.3-70B-INT8 |
 | `exp4_sae_llama70b.py` | 实验四（SAE 特征分解，双域共激活检测） | Llama-3.3-70B-INT8 |
 | `test_70b_forward.py` | 最小测试：70B 能不能完成一次 forward | Llama-3.3-70B-INT8 |
+| `regen_cosine_fig.py` | 重新生成"空山不见人"热力图（英文标签，公众号配图） | Llama-3.3-70B-INT8 |
 
 文件名是历史遗留，实际都用 Llama-70B。
 
@@ -141,11 +142,21 @@ transformers 4.46.0 + compressed-tensors 0.8.0，`output_hidden_states=True` 全
 
 **关键发现：「空」与「闻」共享特征 = 0——视觉清零和听觉激活在 SAE 特征层完全正交。**
 
+#### 公众号配图：英文标签热力图
+
+容器内 matplotlib 中文字体缺失，热力图 token 标签乱码。用 `regen_cosine_fig.py` 重新生成"空山不见人"一组，标签改英文/拼音。
+- `results/fig_poem_cosine_en.png` — 诗组热力图
+- `results/fig_plain_cosine_en.png` — 白话组热力图
+
+封面图：`cover121.svg`，展示"春风知别苦"的子空间几何（自然域 × 情感域，"知"在交叉区）。
+
 ### 实验完成状态
 
 - [x] 实验一：跳跃距离（阴性结果，欧氏距离测的是 tokenizer 边界效应）
 - [x] 实验三：余弦相似度（5 组全 0 vs 白话全 > 0）
 - [x] EID：有效内在维度（5 组归一化比值全 > 2x）
 - [x] 实验四：SAE 双域共激活（5 组桥接 token 均检测到跨域共激活）
+- [x] 热力图英文标签版（公众号配图）
+- [x] 封面 SVG
 - [x] 公众号 121 篇已写完：`/home/lmxxf/work/ai-theorys-study/wechat/121.md`
 - [ ] 实验二（attention）：砍掉，70B 上 output_attentions 会死机
